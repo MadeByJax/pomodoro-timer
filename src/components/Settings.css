@@ -1,0 +1,83 @@
+
+
+.settingsBox {
+    background-color: #002A32;
+    width: 800px;
+    margin: 0 auto;
+    padding: 50px;
+    border-radius: 20px;
+    z-index: 3;
+}
+
+.modal, .overlay {
+    width: 90%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.overlay {
+    background: rgba(49,49,49,0.8);
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    color: #FFC6AC;
+    gap: 50px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.settings--title {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #FFC6AC;
+    display: flex;
+    align-items: center;
+    
+}
+
+form input {
+    padding: 10px 20px;
+    background-color: transparent;
+    border: #FFC6AC 2px solid;
+    border-radius: 10px;
+    color: #FFC6AC;
+
+}
+
+.form--btn button {
+    padding: 10px 20px;
+    border: #FFC6AC 2px solid;
+    background-color: transparent;
+    color: #FFC6AC;
+    cursor: pointer;
+}
+
+#success {
+    background-color: #FFC6AC;
+    color: #002A32;
+}
+
+.form--btn {
+    display: grid;
+}
+
+@media only screen and (min-width: 900px) {
+    .form--btn {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+}
