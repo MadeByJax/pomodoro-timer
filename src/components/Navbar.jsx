@@ -27,7 +27,7 @@ const Navbar = () => {
       <ul className="links">
         <li>
             <div className="icons">
-            <a href="https://github.com/MadeByJax" target="_blank">
+            <a href="https://github.com/MadeByJax/pomodoro-timer" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
