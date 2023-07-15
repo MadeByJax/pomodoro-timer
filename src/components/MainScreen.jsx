@@ -4,6 +4,8 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import "./MainScreen.css";
 import { useEffect, useState } from "react";
+import alarmsound from '../assets/alarmsound.mp3'
+import countdown from '../assets/10second.mp3'
 
 const MainScreen = (props) => {
   const percentage = "10:00";
@@ -16,6 +18,13 @@ const MainScreen = (props) => {
   const [_interval, _setInterval] = useState(0);
   const [_remainingTimeinMs, _setRemainingTimeinMs] = useState(0);
 
+  const alarmSound = () => {
+    new Audio(alarmsound).play() 
+  }
+
+  const countdownSound = () => {
+    new Audio(countdown).play()
+  }
 
 
   const configureTime = (_session, _break) => {
@@ -78,6 +87,9 @@ const MainScreen = (props) => {
   }, [workMinutes, breakMinutes, isBreak]);
   //useEffect
   useEffect(() => {
+    if (minutes == "00" && seconds == "10"){
+      countdownSound()
+    }
     if (
       minutes === "00" &&
       seconds === "00" &&
@@ -85,6 +97,7 @@ const MainScreen = (props) => {
       _remainingTimeinMs !== 0
     ) {
       clearInterval(_interval);
+      alarmSound()
       setIsPaused(false);
       setIsBreak(!isBreak);
     }
