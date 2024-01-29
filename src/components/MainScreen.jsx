@@ -4,8 +4,8 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import "./MainScreen.css";
 import { useEffect, useState } from "react";
-import alarmsound from '../assets/alarmsound.mp3'
-import countdown from '../assets/10second.mp3'
+import alarmsound from "../assets/alarmsound.mp3";
+import countdown from "../assets/10second.mp3";
 
 const MainScreen = (props) => {
   const percentage = "10:00";
@@ -14,18 +14,17 @@ const MainScreen = (props) => {
   const [seconds, setSeconds] = useState();
   const [minutes, setMinutes] = useState();
   const [isPaused, setIsPaused] = useState(false);
-  const [isBreak, setIsBreak] = useState(false)
+  const [isBreak, setIsBreak] = useState(false);
   const [_interval, _setInterval] = useState(0);
   const [_remainingTimeinMs, _setRemainingTimeinMs] = useState(0);
 
   const alarmSound = () => {
-    new Audio(alarmsound).play() 
-  }
+    new Audio(alarmsound).play();
+  };
 
   const countdownSound = () => {
-    new Audio(countdown).play()
-  }
-
+    new Audio(countdown).play();
+  };
 
   const configureTime = (_session, _break) => {
     if (!isBreak) {
@@ -87,8 +86,8 @@ const MainScreen = (props) => {
   }, [workMinutes, breakMinutes, isBreak]);
   //useEffect
   useEffect(() => {
-    if (minutes == "00" && seconds == "10"){
-      countdownSound()
+    if (minutes == "00" && seconds == "10") {
+      countdownSound();
     }
     if (
       minutes === "00" &&
@@ -97,17 +96,17 @@ const MainScreen = (props) => {
       _remainingTimeinMs !== 0
     ) {
       clearInterval(_interval);
-      alarmSound()
+      alarmSound();
       setIsPaused(false);
       setIsBreak(!isBreak);
     }
   }, [minutes, seconds]);
 
-
   const timeLeftPercentage = (_remainingTimeinMs / (workMinutes * 60000)) * 100;
-  const originalTimePercentage = (seconds + minutes * 60) / (workMinutes * 60) * 100;
-const breakTimeLeftPercentage = (_remainingTimeinMs / (breakMinutes * 60000)) * 100
-
+  const originalTimePercentage =
+    ((seconds + minutes * 60) / (workMinutes * 60)) * 100;
+  const breakTimeLeftPercentage =
+    (_remainingTimeinMs / (breakMinutes * 60000)) * 100;
 
   return (
     <>
@@ -123,6 +122,17 @@ const breakTimeLeftPercentage = (_remainingTimeinMs / (breakMinutes * 60000)) * 
           })}
         />
       </div>
+
+      {isBreak && (
+        <div className="sub--text">
+          {isBreak && !isPaused ? (
+            <p>Break time! Please press play to start your break.</p>
+          ) : (
+            <p>Break time!</p>
+          )}
+        </div>
+      )}
+
       <div className="button--section">
         <div onClick={changePlayBtn} className="play">
           {!isPaused ? (
@@ -155,7 +165,7 @@ const breakTimeLeftPercentage = (_remainingTimeinMs / (breakMinutes * 60000)) * 
               width="24"
             >
               <path
-              fill="white"
+                fill="white"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 d="M15.75 5.25v13.5m-7.5-13.5v13.5"
